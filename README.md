@@ -22,7 +22,7 @@ To start docker-compose follow folling steps
 
 
     > you can create your own data set using following link, you may need to format documents and delete extra parenthesis, can be done easily using notepad++ or sed , use this code if you don't find the fork
-    ```Json generator example 
+    ```Json 
     [
       {
         'repeat(100, 50)': {
@@ -44,4 +44,3 @@ To start docker-compose follow folling steps
         }
       }
     ]
-    ''''
