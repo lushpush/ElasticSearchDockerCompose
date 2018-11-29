@@ -1,0 +1,455 @@
+{
+	"info": {
+		"_postman_id": "a8c93822-a691-4d25-87f9-71ff567b2063",
+		"name": "ElasticSearch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "HealthCheck",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"XYZABC\",\r\n  \"age\" : 45,\r\n  \"experience\" : 10\r\n}\r\n\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:9200/_cat/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_cat",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check ElasticSearch",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"XYZABC\",\r\n  \"age\" : 45,\r\n  \"experience\" : 10\r\n}\r\n\r\n"
+				},
+				"url": {
+					"raw": "http://localhost:9200",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get List of Indices",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "http://localhost:9200/_cat/indices?format=json&pretty",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"_cat",
+						"indices"
+					],
+					"query": [
+						{
+							"key": "format",
+							"value": "json"
+						},
+						{
+							"key": "pretty",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search API",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9200/movie/omdb/_search?q=*",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"movie",
+						"omdb",
+						"_search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "*"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Document by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9200/movie/omdb/bD9BXWcBScrFVTrN-TSl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"movie",
+						"omdb",
+						"bD9BXWcBScrFVTrN-TSl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Using JSON",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\": {\"match_all\":{}},\n\t\"size\": 20,\n\t\"_source\": [\"Title\", \"Year\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/movie/omdb/_search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"movie",
+						"omdb",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Match Query",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"query\": {\"match\":{\"Year\":2008}},\n\t\"size\": 20,\n\t\"_source\": [\"Title\", \"Year\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/movie/omdb/_search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"movie",
+						"omdb",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Match Query (OR)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": { \"match\": { \"Year\": \"2008 2006\" } }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/movie/omdb/_search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"movie",
+						"omdb",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Single Document value",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"doc\" : {\r\n  \"Title\": \"Testing Update\"\r\n}\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/movie/omdb/bD9BXWcBScrFVTrN-TSl/_update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"movie",
+						"omdb",
+						"bD9BXWcBScrFVTrN-TSl",
+						"_update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Single Document",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:9200/movie/omdb/bD9BXWcBScrFVTrN-TSl",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"movie",
+						"omdb",
+						"bD9BXWcBScrFVTrN-TSl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete By Query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"query\": { \r\n    \"match\": {\r\n      \"Year\": 2008\r\n    }\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/movie/omdb/_delete_by_query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"movie",
+						"omdb",
+						"_delete_by_query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add New Field to Document",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"script\" : \"ctx._source.new_field = 'Testing Field'\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/movie/omdb/bj9BXWcBScrFVTrN-TSl/_update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"movie",
+						"omdb",
+						"bj9BXWcBScrFVTrN-TSl",
+						"_update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Field from Document",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"script\" : \"ctx._source.remove('new_field')\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9200/movie/omdb/bj9BXWcBScrFVTrN-TSl/_update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"movie",
+						"omdb",
+						"bj9BXWcBScrFVTrN-TSl",
+						"_update"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
